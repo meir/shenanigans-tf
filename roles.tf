@@ -6,7 +6,7 @@ resource discord_role administrator {
   permissions = data.discord_permission.administrators.allow_bits
   hoist = true
   mentionable = true
-  position = 99
+  position = 22
 }
 
 resource discord_role moderator {
@@ -16,7 +16,7 @@ resource discord_role moderator {
   permissions = data.discord_permission.moderator.allow_bits
   hoist = true
   mentionable = true
-  position = 98
+  position = 21
 }
 
 resource discord_role og {
@@ -26,7 +26,7 @@ resource discord_role og {
   permissions = data.discord_permission.og.allow_bits
   hoist = false
   mentionable = true
-  position = 97
+  position = 20
 }
 
 resource discord_role_everyone everyone {
