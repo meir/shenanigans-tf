@@ -11,6 +11,9 @@ terraform {
   }
 
   required_providers {
-    source = "aequasi/discord"
+    discord = {
+      source = "aequasi/discord"
+      version = "0.0.4"
+    }
   }
 }
