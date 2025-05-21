@@ -6,7 +6,7 @@ resource discord_role administrator {
   permissions = data.discord_permission.administrators.allow_bits
   hoist = true
   mentionable = true
-  position = 1
+  position = 99
 }
 
 resource discord_role moderator {
@@ -16,7 +16,7 @@ resource discord_role moderator {
   permissions = data.discord_permission.moderator.allow_bits
   hoist = true
   mentionable = true
-  position = 2
+  position = 98
 }
 
 resource discord_role og {
@@ -26,7 +26,7 @@ resource discord_role og {
   permissions = data.discord_permission.og.allow_bits
   hoist = false
   mentionable = true
-  position = 3
+  position = 97
 }
 
 resource discord_role_everyone everyone {
@@ -69,4 +69,5 @@ resource discord_role levels {
   color = random_integer.level_color[each.key].result
   hoist = false
   mentionable = false
+  position = index(var.levels, each.key) + 1
 }
