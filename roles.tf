@@ -75,3 +75,8 @@ resource discord_role levels {
   mentionable = false
   position = index(local.levels, each.key) + 1
 }
+
+resource discord_role_everyone everyone {
+  server_id = discord_server.shenanigans.id
+  permissions = data.discord_permission.everyone.allow_bits
+}
