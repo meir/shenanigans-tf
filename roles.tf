@@ -26,7 +26,11 @@ resource discord_role og {
   position = 3
 }
 
-resource discord_role_everyone everyone {
+resource discord_role everyone {
   server_id = discord_server.shenanigans.id
+  name = "@everyone"
   permissions = data.discord_permission.everyone.allow_bits
+  hoist = false
+  mentionable = false
+  position = 4
 }
