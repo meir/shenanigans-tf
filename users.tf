@@ -75,3 +75,4 @@ resource discord_member_roles ogs {
     role_id = discord_role.og.id
   }
 }
+
