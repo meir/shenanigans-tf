@@ -15,7 +15,7 @@ terraform {
       source = "chaotic-logic/discord"
       version = "0.0.1"
     }
-    random {
+    random = {
       source = "hashicorp/random"
     }
   }
