@@ -31,7 +31,6 @@ resource discord_role og {
 
 resource discord_role_everyone everyone {
   server_id = discord_server.shenanigans.id
-  color = 1752220
   permissions = data.discord_permission.everyone.allow_bits
 }
 
