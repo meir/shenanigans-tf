@@ -50,7 +50,7 @@ locals {
   selectable_roles_start = local.level_roles_end
   selectable_roles_end = length(local.selectable_roles) + local.selectable_roles_start
   custom_roles_start = local.selectable_roles_end
-  custom_roles_end = length(local.selectable_roles) + local.custom_roles_start
+  custom_roles_end = length(local.custom_roles) + local.custom_roles_start
 
   position_og = local.custom_roles_end
   position_moderator = local.position_og + 1
