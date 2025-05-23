@@ -12,11 +12,12 @@ terraform {
 
   required_providers {
     discord = {
-      source = "chaotic-logic/discord"
+      source = "lucky3028/discord"
       version = "0.0.1"
     }
     random = {
       source = "hashicorp/random"
+      version = "~> 3.0"
     }
   }
 }
