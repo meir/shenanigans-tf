@@ -23,9 +23,36 @@ locals {
     "MAX LEVEL"
   ]
 
-  list_top = length(local.levels)
+  selectable_roles = [
+    "Male",
+    "Female",
+    "Non-Binary",
+    "VRChat",
+    "League of Legends",
+    "Lethal Company",
+    "Secrets of Grindea",
+    "Garry's Mod",
+    "Phasmophobia",
+    "Tabletop Simulator",
+    "Terraria",
+    "Pre-Drinkers"
+  ]
 
-  position_og = local.list_top + 1
+  custom_roles = [
+    "Member"
+  ]
+
+  max_color = 16777215
+
+
+  level_roles_start = 1
+  level_roles_end = length(local.levels)
+  selectable_roles_start = local.level_roles_end + 1
+  selectable_roles_end = length(local.selectable_roles)
+  custom_roles_start = local.selectable_roles_end + 1
+  custom_roles_end = length(local.selectable_roles)
+
+  position_og = local.custom_roles_end + 1
   position_moderator = local.position_og + 1
   position_administrator = local.position_moderator + 1
 }
@@ -63,7 +90,7 @@ resource discord_role og {
 resource random_integer level_color {
   for_each = toset(local.levels)
   min = 0
-  max = 16777215
+  max = local.max_color
 }
 
 resource discord_role levels {
@@ -73,10 +100,35 @@ resource discord_role levels {
   color = random_integer.level_color[each.key].result
   hoist = false
   mentionable = false
-  position = index(local.levels, each.key) + 1
+  position = index(local.levels, each.key) + local.level_roles_start
 }
 
 resource discord_role_everyone everyone {
   server_id = discord_server.shenanigans.id
   permissions = data.discord_permission.everyone.allow_bits
+}
+
+resource random_integer selectable_roles_color {
+  for_each = toset(local.selectable_roles)
+  min = 0
+  max = local.max_color
+}
+
+resource discord_role selectable_role {
+  for_each = toset(local.selectable_roles)
+  server_id = discord_server.shenanigans.id
+  name = each.key
+  color = random_integer.selectable_roles_color[each.key].result
+  hoist = false
+  mentionable = true
+  position = index(local.selectable_roles, each.key) + local.selectable_roles_start
+}
+
+resource discord_role custom_role {
+  for_each = toset(local.custom_roles)
+  server_id = discord_server.shenanigans.id
+  name = each.key
+  hoist = true
+  mentionable = true
+  position = index(local.custom_roles, each.key) + local.custom_roles_start
 }
